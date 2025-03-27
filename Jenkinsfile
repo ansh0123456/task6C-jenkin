@@ -73,7 +73,7 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying React app to staging using Docker...'
-                echo 'Integration Steps: Build a Docker image with the React app, run an Nginx container to serve it, and expose it on the staging server.'
+                echo 'Integration Steps: Build a Docker image with the React app and run an Nginx container to serve it, and expose it on the staging server.'
                 echo 'What it does: Deploys the React app inside a Docker container, making it accessible for testing.'
             }
             post {
