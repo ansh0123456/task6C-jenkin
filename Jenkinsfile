@@ -17,6 +17,13 @@ pipeline {
                 echo 'Integration Steps: Install dependencies using npm, build the React app using Webpack or Vite, and generate optimized production assets.'
                 echo 'What it does: Compiles React code into a minified, production-ready format'
             }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Build Stage Completed",
+                         body: "The 'Build' stage has completed.\n\nCheck logs for details."
+                }
+            }
         }
 
         stage('Unit and Integration Tests') {
@@ -25,6 +32,13 @@ pipeline {
                 echo 'Tools: Jest, Mocha, React Testing Library'
                 echo 'Integration Steps: Use Jest and React Testing Library to validate component functionality. Ensure test coverage meets project standards.'
                 echo 'What it does: Tests individual React components and their integration with state and APIs'
+            }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Unit and Integration Tests Stage Completed",
+                         body: "The 'Unit and Integration Tests' stage has completed.\n\nCheck logs for details."
+                }
             }
         }
 
@@ -35,6 +49,13 @@ pipeline {
                 echo 'Integration Steps: Run ESLint to check code style and SonarQube for static code analysis.'
                 echo 'What it does: Ensures the code follows best practices and detects potential bugs.'
             }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Code Analysis Stage Completed",
+                         body: "The 'Code Analysis' stage has completed.\n\nCheck logs for details."
+                }
+            }
         }
 
         stage('Security Scan') {
@@ -43,6 +64,13 @@ pipeline {
                 echo 'Tools: OWASP Dependency Check, Snyk, GitHub Dependabot'
                 echo 'Integration Steps: Scan package dependencies for known vulnerabilities using OWASP Dependency Check.'
                 echo 'What it does: Identifies security risks in project dependencies.'
+            }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Security Scan Stage Completed",
+                         body: "The 'Security Scan' stage has completed.\n\nCheck logs for details."
+                }
             }
         }
 
@@ -53,6 +81,13 @@ pipeline {
                 echo 'Integration Steps: Build a Docker image with the React app, run an Nginx container to serve it, and expose it on the staging server.'
                 echo 'What it does: Deploys the React app inside a Docker container, making it accessible for testing.'
             }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Deploy to Staging Stage Completed",
+                         body: "The 'Deploy to Staging' stage has completed.\n\nCheck logs for details."
+                }
+            }
         }
 
         stage('Integration Tests on Staging') {
@@ -62,6 +97,13 @@ pipeline {
                 echo 'Integration Steps: Execute Selenium test cases against the staging URL to validate full application workflows.'
                 echo 'What it does: Ensures that the deployed React app works correctly in the staging environment.'
             }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Integration Tests on Staging Stage Completed",
+                         body: "The 'Integration Tests on Staging' stage has completed.\n\nCheck logs for details."
+                }
+            }
         }
 
         stage('Deploy to Production') {
@@ -70,6 +112,13 @@ pipeline {
                 echo 'Tools: Docker, Kubernetes, AWS ECS'
                 echo 'Integration Steps: Build and tag the Docker image for production, push it to a registry (optional), and run an Nginx container to serve the React app.'
                 echo 'What it does: Deploys the React app in a production-ready Docker container.'
+            }
+            post {
+                always {
+                    mail to: "${EMAIL_RECIPIENT}",
+                         subject: "Jenkins Pipeline: Deploy to Production Stage Completed",
+                         body: "The 'Deploy to Production' stage has completed.\n\nCheck logs for details."
+                }
             }
         }
     }
