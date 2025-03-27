@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Building the React application...'
                 echo 'Integration Steps: Install dependencies using npm, build the React app using Webpack or Vite, and generate optimized production assets.'
-                echo 'What it does: Compiles React code into a minified, production-ready format.'
+                echo 'What it does: Compiles React code into  minified, production-ready format.'
             }
             post {
                 always {
