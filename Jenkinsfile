@@ -51,7 +51,7 @@ pipeline {
                 echo 'Deploying React app to staging using Docker...'
                 echo 'Tools: Docker, Kubernetes, Nginx'
                 echo 'Integration Steps: Build a Docker image with the React app, run an Nginx container to serve it, and expose it on the staging server.'
-                echo 'What it does: Deploys the React app inside a Dor container, making it accessible for testing.'
+                echo 'What it does: Deploys the React app inside a Docker container, making it accessible for testing.'
             }
         }
 
