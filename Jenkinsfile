@@ -24,7 +24,7 @@ pipeline {
                 echo 'Running unit and integration tests...'
                 echo 'Tools: Jest, Mocha, React Testing Library'
                 echo 'Integration Steps: Use Jest and React Testing Library to validate component functionality. Ensure test coverage meets project standards.'
-                echo 'What it does: Tests individual React components and their integration with state and APIs.'
+                echo 'What it does: Tests individual React components and their integration with state and APIs'
             }
         }
 
