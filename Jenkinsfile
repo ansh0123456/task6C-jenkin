@@ -80,12 +80,27 @@ pipeline {
             echo 'Tools: Jenkins, Slack, Prometheus'
             echo 'Integration Steps: Ensure successful execution of all pipeline stages, from build to production deployment.'
             echo 'What it does: Confirms the React app is built, tested, analyzed, scanned, and deployed correctly.'
+
+            mail to: "${EMAIL_RECIPIENT}",
+                 subject: "Jenkins Pipeline Success: React App",
+                 body: "Jenkins Pipeline Execution: SUCCESS\n\nThe pipeline has successfully completed all stages.\n\n" +
+                       "Build and deployment details:\n" +
+                       "- Docker Image: ${DOCKER_IMAGE}\n" +
+                       "- Staging Server: ${STAGING_SERVER}\n" +
+                       "- Production Server: ${PRODUCTION_SERVER}\n\n" +
+                       "Check Jenkins logs for more details."
         }
         failure {
             echo 'Pipeline failed! Check the logs for more details.'
             echo 'Tools: Jenkins, ELK Stack, Grafana'
             echo 'Integration Steps: Identify the failing stage, analyze logs, and troubleshoot errors for resolution.'
             echo 'What it does: Notifies the team of pipeline failures for immediate attention.'
+
+            mail to: "${EMAIL_RECIPIENT}",
+                 subject: "Jenkins Pipeline Failure: React App",
+                 body: "Jenkins Pipeline Execution: FAILURE\n\nThe pipeline encountered an issue and failed.\n\n" +
+                       "Check Jenkins logs for details and debugging.\n\n" +
+                       "Last failed stage: ${currentBuild.currentResult}"
         }
     }
 }
