@@ -21,7 +21,7 @@ pipeline {
                 always {
                     mail to: "${EMAIL_RECIPIENT}",
                          subject: "Jenkins Pipeline: Build Stage Completed",
-                         body: "The 'Build' stage has completed.\n\nCheck logs for details."
+                         body: "The 'Build' stage has completed.\n\nCheck logs for details"
                 }
             }
         }
